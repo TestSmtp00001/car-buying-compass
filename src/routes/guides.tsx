@@ -76,9 +76,10 @@ function GuidesPage() {
           <p className="mt-6 text-xl leading-8 text-muted-foreground">Direct answers first, followed by the detail worth checking before money or keys change hands.</p>
         </header>
 
-        <div className="mt-16 divide-y divide-border border-y border-border">
-          {faqs.map((faq) => (
-            <section key={faq.id} id={faq.id} aria-labelledby={`${faq.id}-heading`} className="scroll-mt-8 py-10">
+        <div className="mt-16 grid gap-6">
+          {faqs.map((faq, index) => (
+            <section key={faq.id} id={faq.id} aria-labelledby={`${faq.id}-heading`} className="editorial-card scroll-mt-8">
+              <p className="section-marker">Check {String(index + 1).padStart(2, "0")}</p>
               <h2 id={`${faq.id}-heading`} className="text-2xl font-bold leading-snug text-foreground">{faq.question}</h2>
               <p className="mt-4 font-semibold leading-8 text-foreground">{faq.answer}</p>
               <details className="editorial-details mt-5">
