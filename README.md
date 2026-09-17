@@ -174,19 +174,15 @@ Write realistic, substantive placeholder content throughout — not lorem ipsum.
 
 I need to evaluate whether the reading experience actually works.
 
-This project was built with [Lovable](https://lovable.dev).
+## Architecture
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/99350a9b-9d75-4e16-b02f-894677ab4d51).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Built with [Astro 5](https://astro.build) as a fully static site — every page ships as
+plain HTML/CSS with no client-side JavaScript, so the complete content is available to
+search engines and any other consumer that doesn't execute JavaScript.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
 git clone <this-repository-url>
@@ -194,3 +190,7 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+- `npm run dev` — start the local dev server
+- `npm run build` — type-check and build the static site to `dist/`
+- `npm run preview` — preview the production build locally
