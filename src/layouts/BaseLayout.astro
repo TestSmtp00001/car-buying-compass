@@ -105,18 +105,18 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       </div>
     </header>
     <slot />
-    <footer class="border-t border-border bg-secondary">
+    <footer class="border-t border-white/15 bg-foreground text-background">
       <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 sm:px-6">
         <div>
-          <p class="text-sm font-semibold text-foreground">Contact</p>
+          <p class="text-sm font-semibold text-background">Contact</p>
           <a
-            class="mt-2 inline-flex min-h-11 items-center text-primary"
+            class="mt-2 inline-flex min-h-11 items-center text-background underline underline-offset-4"
             href="mailto:author@example.com"
           >
             author@example.com
           </a>
         </div>
-        <p class="max-w-md text-sm leading-6 text-muted-foreground sm:justify-self-end">
+        <p class="max-w-md text-sm leading-6 text-background/70 sm:justify-self-end">
           An independent editorial project by the author. Northvale Motors and all events described
           here are placeholder content for evaluation.
         </p>

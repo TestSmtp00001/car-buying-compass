@@ -37,26 +37,31 @@ const vehicles = [
 const assessment = [
   {
     stage: "Sales",
+    anchor: "the-order",
     rating: "Adequate",
     text: "Questions were answered promptly and the test drive was arranged without pressure. I recall being told the vehicle matched the discussed specification, but that point was not added to the written order.",
   },
   {
     stage: "Paperwork",
+    anchor: "paperwork",
     rating: "Poor",
     text: "The contract stated the model and price but did not record the feature that later became disputed. The final paperwork was presented close to closing time, leaving little room for a careful comparison.",
   },
   {
     stage: "Delivery",
+    anchor: "delivery",
     rating: "Poor",
     text: "The handover was brief and the missing feature was not identified on the delivery checklist. In my opinion, a structured walk-through would probably have exposed the mismatch before I drove away.",
   },
   {
     stage: "Aftersales",
+    anchor: "first-contact",
     rating: "Adequate",
     text: "The service desk logged the issue and returned the first call. Follow-up then moved between departments, and I did not receive a clear written position within the stated timeframe.",
   },
   {
     stage: "Complaint handling",
+    anchor: "current",
     rating: "Poor",
     text: "Northvale Motors acknowledged the complaint but has not provided a proposed resolution. Requests for the dealership's account of the pre-sale conversation remain unanswered as at the latest update.",
   },
@@ -90,8 +95,13 @@ const assessment = [
             Independent Australian-market observations by the author, based on test drives and
             everyday use.
           </p>
+          <p class="mt-5">
+            <a href="/#choosing-car" class="editorial-link"
+              >See how the search for a specific feature began</a
+            >.
+          </p>
         </div>
-        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="mt-10 grid gap-6">
           {
             vehicles.map((vehicle, index) => (
               <article class="editorial-card">
@@ -131,9 +141,13 @@ const assessment = [
         <div class="mt-10 grid gap-4">
           {
             assessment.map((item, index) => (
-              <article class="assessment-block grid gap-3 md:grid-cols-[3rem_12rem_8rem_1fr] md:gap-6">
-                <p class="section-marker">{String(index + 1).padStart(2, "0")}</p>
-                <h3 class="text-lg font-bold text-foreground">{item.stage}</h3>
+              <article class="assessment-block grid gap-3 md:grid-cols-[3rem_12rem_8rem_1fr] md:items-center md:gap-6">
+                <p class="section-marker mb-0!">{String(index + 1).padStart(2, "0")}</p>
+                <h3 class="text-lg font-bold text-foreground">
+                  <a href={`/#${item.anchor}`} class="no-underline hover:text-primary">
+                    {item.stage}
+                  </a>
+                </h3>
                 <p class="font-semibold text-primary">{item.rating}</p>
                 <p class="max-w-reading text-muted-foreground">{item.text}</p>
               </article>

@@ -174,16 +174,16 @@ const stops = [
         <ol class="mt-6 grid gap-5">
           {
             stops.map((stop, index) => (
-              <li class="grid grid-cols-[2rem_1fr] gap-3">
-                <span aria-hidden="true" class="text-sm font-bold text-primary">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span>
+              <li>
+                <div class="flex items-baseline gap-3">
+                  <span aria-hidden="true" class="text-sm font-bold text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <a href={stop.href} class="stop-link text-lg">
                     {stop.title}
                   </a>
-                  <span class="block text-muted-foreground">{stop.teaser}</span>
-                </span>
+                </div>
+                <span class="mt-1 block pl-[2.75rem] text-muted-foreground">{stop.teaser}</span>
               </li>
             ))
           }
