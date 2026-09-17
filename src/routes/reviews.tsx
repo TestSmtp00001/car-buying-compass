@@ -66,10 +66,11 @@ function ReviewsPage() {
             <h2 id="vehicle-reviews" className="mt-3 text-3xl font-bold text-foreground">Vehicle reviews</h2>
             <p className="mt-4 text-muted-foreground">Independent Australian-market observations by the author, based on test drives and everyday use.</p>
           </div>
-          <div className="mt-10 grid gap-x-12 gap-y-14 lg:grid-cols-2">
-            {vehicles.map((vehicle) => (
-              <article key={vehicle.name} className="border-t border-border pt-6">
-                <p className="text-sm font-semibold text-primary">{vehicle.year} · {vehicle.variant}</p>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {vehicles.map((vehicle, index) => (
+              <article key={vehicle.name} className="editorial-card">
+                <p className="section-marker">Vehicle {String(index + 1).padStart(2, "0")}</p>
+                <p className="mt-2 text-sm font-semibold text-primary">{vehicle.year} · {vehicle.variant}</p>
                 <h3 className="mt-2 text-2xl font-bold text-foreground">{vehicle.name}</h3>
                 <p className="mt-4 font-semibold leading-7 text-foreground">{vehicle.verdict}</p>
                 <p className="mt-4 text-muted-foreground">{vehicle.body}</p>
@@ -89,9 +90,10 @@ function ReviewsPage() {
             <p className="mt-4 text-muted-foreground">This assessment concerns the author’s transaction and complaint. It is not a rating of the vehicles reviewed above.</p>
             <p className="mt-5"><Link to="/" className="editorial-link">Read the full chronological account of what occurred</Link>.</p>
           </div>
-          <div className="mt-10 divide-y divide-border border-y border-border">
-            {assessment.map((item) => (
-              <article key={item.stage} className="grid gap-3 py-7 md:grid-cols-[12rem_8rem_1fr] md:gap-8">
+          <div className="mt-10 grid gap-4">
+            {assessment.map((item, index) => (
+              <article key={item.stage} className="assessment-block grid gap-3 md:grid-cols-[3rem_12rem_8rem_1fr] md:gap-6">
+                <p className="section-marker">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="text-lg font-bold text-foreground">{item.stage}</h3>
                 <p className="font-semibold text-primary">{item.rating}</p>
                 <p className="max-w-reading text-muted-foreground">{item.text}</p>
