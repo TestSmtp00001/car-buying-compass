@@ -59,15 +59,40 @@ const timeline = [
     text: "Northvale Motors has acknowledged the complaint. The author is still waiting for a substantive written response and has not agreed to a resolution.",
   },
 ];
+
+const stops = [
+  {
+    href: "#choosing-car",
+    title: "Before the deposit",
+    teaser: "The listing, the test drive, and a detail I didn't get in writing.",
+  },
+  {
+    href: "#signing",
+    title: "On paper",
+    teaser: "What the contract recorded, and the line it left out.",
+  },
+  {
+    href: "#handover",
+    title: "Handover, and what I found after",
+    teaser: "A quick walkaround, then a discovery later that same day.",
+  },
+  {
+    href: "#response",
+    title: "Following up",
+    teaser: "One phone call, a written chronology, and a complaint still awaiting an answer.",
+  },
+];
 ---
 
 <BaseLayout
-  title="My Car-Buying Experience with Northvale Motors"
-  description="The author's factual, first-person account of an unresolved Australian car purchase, from order and delivery to complaint."
+  title="One customer's experience with McCarroll's."
+  description="A personal review of McCarroll's, documenting one customer's vehicle purchase, timeline, supporting evidence, company responses and latest outcome."
   ogType="article"
+  publishedTime="2026-04-02"
+  modifiedTime="2026-09-17"
 >
   <main id="main-content">
-    <article class="mx-auto max-w-reading px-4 pb-8 pt-16 sm:px-6 sm:pt-24">
+    <article class="mx-auto max-w-6xl px-4 pb-8 pt-16 sm:px-6 sm:pt-24">
       <header>
         <p class="eyebrow">First-person account</p>
         <h1 class="mt-4 text-4xl font-bold leading-tight text-foreground sm:text-5xl">
@@ -81,11 +106,50 @@ const timeline = [
           Disclosure: the author is the customer, writing from personal experience, with no
           affiliation to Northvale Motors or the vehicle manufacturer.
         </p>
-        <p class="mt-8 border-y border-border py-4 text-sm leading-6 text-muted-foreground">
-          <strong class="text-foreground">Current status — 17 September 2026:</strong> Northvale Motors
-          has acknowledged the complaint. The author is awaiting a substantive written response.
+
+        <div class="editorial-card mt-8">
+          <p class="section-marker">Current status — 17 September 2026</p>
+          <p class="text-foreground">
+            Northvale Motors has acknowledged the complaint. The author is awaiting a substantive
+            written response.
+          </p>
+        </div>
+
+        <dl class="quick-facts mt-8">
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Deposit paid
+            </dt>
+            <dd class="mt-1 text-xl font-bold text-foreground">$1,000</dd>
+            <dd class="text-sm text-muted-foreground">7 February 2026</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Contract signed
+            </dt>
+            <dd class="mt-1 text-xl font-bold text-foreground">18 February</dd>
+            <dd class="text-sm text-muted-foreground">feature not listed</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Car collected
+            </dt>
+            <dd class="mt-1 text-xl font-bold text-foreground">12 March</dd>
+            <dd class="text-sm text-muted-foreground">feature found absent</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Complaint unresolved
+            </dt>
+            <dd class="mt-1 text-xl font-bold text-foreground">168 days</dd>
+            <dd class="text-sm text-muted-foreground">since 2 April 2026</dd>
+          </div>
+        </dl>
+
+        <p class="mt-10 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+          In short
         </p>
-        <p class="mt-10 text-lg leading-8 text-foreground">
+        <p class="mt-2 text-lg leading-8 text-foreground">
           I approached the purchase as an ordinary buyer: I researched the model, took a test drive,
           discussed the specification and signed the paperwork. The uncertainty began only after
           collection, when one feature I believed formed part of the deal was not present. The
@@ -96,82 +160,170 @@ const timeline = [
         </p>
       </header>
 
-      <section aria-labelledby="choosing-car" class="story-section">
-        <p class="section-marker">01 · Research</p>
-        <h2 id="choosing-car" class="text-3xl font-bold text-foreground">Choosing the car</h2>
-        <p>
-          I wanted a practical vehicle with a specific driver-assistance feature for regular
-          motorway travel. The manufacturer's Australian material and the dealership listing
-          appeared consistent, so I booked a test drive of the advertised variant.
+      <nav aria-labelledby="stops-heading" class="stop-nav mt-10">
+        <h2
+          id="stops-heading"
+          class="text-sm font-bold uppercase tracking-wide text-muted-foreground"
+        >
+          The account in four stops
+        </h2>
+        <p class="mt-2 text-muted-foreground">
+          Read straight through, or jump to the part that matches where you are in your own
+          purchase.
         </p>
-        <p>
-          During the appointment, I recall asking whether the test vehicle's equipment matched the
-          car being offered. My recollection is that it did. I did not ask for that answer to be
-          repeated in writing before paying the deposit — <a
-            href="/guides#before-deposit"
-            class="editorial-link">this is the check I now wish I had made</a
-          >.
-        </p>
-      </section>
+        <ol class="mt-6 grid gap-5">
+          {
+            stops.map((stop, index) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-3">
+                <span aria-hidden="true" class="text-sm font-bold text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>
+                  <a href={stop.href} class="stop-link text-lg">
+                    {stop.title}
+                  </a>
+                  <span class="block text-muted-foreground">{stop.teaser}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
 
-      <section aria-labelledby="signing" class="story-section">
-        <p class="section-marker">02 · Evidence</p>
-        <h2 id="signing" class="text-3xl font-bold text-foreground">What the paperwork recorded</h2>
-        <p>
-          The contract stated the model, variant, colour and drive-away price. It did not name the
-          feature at issue. That distinction matters: the written document is clear about what it
-          contains, while my account of the conversation is necessarily a recollection.
-        </p>
-        <details class="editorial-details">
-          <summary>What I checked, and what I missed</summary>
+      <div class="mt-10">
+        <section aria-labelledby="choosing-car" class="story-section">
+          <p class="section-marker">01 · Research</p>
+          <h2 id="choosing-car" class="text-3xl font-bold text-foreground">Choosing the car</h2>
           <p>
-            I checked the total price, expected delivery month and trade-in allowance. I did not
-            compare each advertised feature against the order, nor add the feature as a special
-            condition. The practical lesson is to treat any feature that affects the decision as a
-            written term, however routine it may sound.
+            I wanted a practical vehicle with a specific driver-assistance feature for regular
+            motorway travel. The manufacturer's Australian material and the dealership listing
+            appeared consistent, so I booked a test drive of the advertised variant.
           </p>
-        </details>
-      </section>
 
-      <section aria-labelledby="handover" class="story-section">
-        <p class="section-marker">03 · Handover</p>
-        <h2 id="handover" class="text-3xl font-bold text-foreground">Collection and discovery</h2>
-        <p>
-          The car appeared clean and undamaged at delivery. The handover focused on keys, phone
-          pairing and servicing, and I signed the delivery documents after a short walk-around.
-          Later that day, while setting up the assistance systems, I found the expected control and
-          menu option were absent.
-        </p>
-        <p>
-          I contacted Northvale Motors the next morning. Before accepting a future vehicle, I would
-          use <a href="/guides#delivery-inspection" class="editorial-link"
-            >a written delivery inspection covering every paid-for feature</a
-          >, not only visible condition.
-        </p>
-      </section>
+          <figure class="mt-8">
+            <div class="exhibit-photo">
+              <span class="font-mono text-xs leading-relaxed tracking-wide text-muted-foreground">
+                EXHIBIT — the dealership listing<br />viewed 3 February 2026
+              </span>
+            </div>
+            <figcaption class="mt-2 text-sm leading-6 text-muted-foreground">
+              The listing as viewed on 3 February 2026. I did not save a screenshot at the time —
+              the first gap in my own record, and one of the checks I revisit below.
+            </figcaption>
+          </figure>
 
-      <section aria-labelledby="response" class="story-section">
-        <p class="section-marker">04 · Follow-up</p>
-        <h2 id="response" class="text-3xl font-bold text-foreground">The response so far</h2>
-        <p>
-          The first telephone response was courteous and non-committal. I was told the specification
-          would be checked. I then sent a concise written chronology with the advertisement
-          screenshot, order and contract so there would be one record of the issue.
-        </p>
-        <p>
-          Northvale Motors has confirmed receipt but has not provided its account of the pre-sale
-          discussion or a proposed resolution. That is the position as at the date above; I will
-          update this page if the material facts change.
-        </p>
-      </section>
+          <p>
+            During the appointment, I recall asking whether the test vehicle's equipment matched the
+            car being offered. My recollection is that it did. I did not ask for that answer to be
+            repeated in writing before paying the deposit — <a
+              href="/guides#before-deposit"
+              class="editorial-link">this is the check I now wish I had made</a
+            >.
+          </p>
+        </section>
+
+        <section aria-labelledby="signing" class="story-section">
+          <p class="section-marker">02 · Evidence</p>
+          <h2 id="signing" class="text-3xl font-bold text-foreground">
+            What the paperwork recorded
+          </h2>
+          <p>
+            The contract stated the model, variant, colour and drive-away price. It did not name the
+            feature at issue. That distinction matters: the written document is clear about what it
+            contains, while my account of the conversation is necessarily a recollection.
+          </p>
+
+          <div class="editorial-card mt-8">
+            <p class="text-xs font-semibold uppercase tracking-wide text-primary">
+              Order form — special conditions field
+            </p>
+            <div
+              class="mt-3 border border-dashed border-border bg-background p-4 font-mono text-sm leading-relaxed text-foreground"
+            >
+              Variant: as advertised<br />
+              Colour: as advertised<br />
+              Drive-away price: as agreed<br />
+              Special conditions: <span class="text-muted-foreground">— left blank —</span>
+            </div>
+            <p class="mt-3 text-sm leading-6 text-muted-foreground">
+              The one field that could have settled the dispute in writing was never filled in, and
+              nobody at the signing suggested it should be.
+            </p>
+          </div>
+
+          <details class="editorial-details">
+            <summary>What I checked, and what I missed</summary>
+            <p>
+              I checked the total price, expected delivery month and trade-in allowance. I did not
+              compare each advertised feature against the order, nor add the feature as a special
+              condition. The practical lesson is to treat any feature that affects the decision as a
+              written term, however routine it may sound.
+            </p>
+          </details>
+        </section>
+
+        <section aria-labelledby="handover" class="story-section">
+          <p class="section-marker">03 · Handover</p>
+          <h2 id="handover" class="text-3xl font-bold text-foreground">Collection and discovery</h2>
+          <p>
+            The car appeared clean and undamaged at delivery. The handover focused on keys, phone
+            pairing and servicing, and I signed the delivery documents after a short walk-around.
+            Later that day, while setting up the assistance systems, I found the expected control
+            and menu option were absent.
+          </p>
+          <p>
+            I contacted Northvale Motors the next morning. Before accepting a future vehicle, I
+            would use <a href="/guides#delivery-inspection" class="editorial-link"
+              >a written delivery inspection covering every paid-for feature</a
+            >, not only visible condition.
+          </p>
+        </section>
+
+        <section aria-labelledby="response" class="story-section">
+          <p class="section-marker">04 · Follow-up</p>
+          <h2 id="response" class="text-3xl font-bold text-foreground">The response so far</h2>
+          <p>
+            The first telephone response was courteous and non-committal. I was told the
+            specification would be checked. I then sent a concise written chronology with the
+            advertisement screenshot, order and contract so there would be one record of the issue.
+          </p>
+
+          <div class="editorial-card mt-8">
+            <p class="text-xs font-semibold uppercase tracking-wide text-primary">
+              Email to Northvale Motors — 2 April 2026
+            </p>
+            <div
+              class="mt-3 border border-border bg-background p-4 font-mono text-sm leading-relaxed text-foreground"
+            >
+              <span class="text-muted-foreground">Subject:</span> Formal complaint — feature discrepancy
+              on delivery<br /><br />
+              I am writing to formally record that the driver-assistance feature discussed before purchase
+              was not present on the car collected on 12 March. Please confirm in writing whether Northvale
+              Motors accepts this account, and what remedy is proposed. I would appreciate a response
+              within ten business days.
+            </div>
+            <p class="mt-3 text-sm leading-6 text-muted-foreground">
+              The requested response date passed without a substantive reply. This message, and the
+              acknowledgement that followed it, are the only written positions either side has put
+              on record.
+            </p>
+          </div>
+
+          <p class="mt-8">
+            Northvale Motors has confirmed receipt but has not provided its account of the pre-sale
+            discussion or a proposed resolution. That is the position as at the date above; I will
+            update this page if the material facts change.
+          </p>
+        </section>
+      </div>
 
       <section aria-labelledby="timeline-heading" class="story-section">
         <p class="section-marker">05 · Documented chronology</p>
         <h2 id="timeline-heading" class="mt-3 text-3xl font-bold text-foreground">The timeline</h2>
         <ol class="timeline mt-10">
           {
-            timeline.map((item) => (
-              <li id={item.id} class="timeline-item scroll-mt-8">
+            timeline.map((item, index) => (
+              <li id={item.id} class="timeline-item">
                 <div class="flex flex-wrap gap-x-3 text-sm font-semibold text-primary">
                   <time datetime={item.date.includes("September") ? "2026-09-17" : undefined}>
                     {item.date}
@@ -185,6 +337,9 @@ const timeline = [
                   </a>
                 </h3>
                 <p class="mt-2 text-muted-foreground">{item.text}</p>
+                {index < timeline.length - 1 && (
+                  <p class="mt-2 text-sm italic text-muted-foreground">What this led to ↓</p>
+                )}
               </li>
             ))
           }
@@ -197,14 +352,37 @@ const timeline = [
           What I would do differently
         </h2>
         <p>
-          I would make the important specification part of the written contract, save the listing on
-          the day of purchase, slow the handover down and test each agreed feature before signing
-          the delivery record. I would also follow every material conversation with a dated email.
+          Nothing in this account required expertise to avoid. Four changes would have prevented all
+          of it, and each costs a delay rather than money.
         </p>
-        <p>
-          Those steps are collected in the <a href="/guides" class="editorial-link"
+        <ol class="mt-6 list-decimal space-y-3 pl-5 marker:font-bold marker:text-primary">
+          <li>
+            <a href="/guides#before-deposit" class="editorial-link"
+              >Ask for every discussed feature in writing before paying a deposit</a
+            > — if it cannot be confirmed within a day, that is itself the answer.
+          </li>
+          <li>
+            <a href="/guides#contract-wording" class="editorial-link"
+              >Get the specification written into the contract as a special condition</a
+            >, in the words the listing used.
+          </li>
+          <li>
+            <a href="/guides#delivery-inspection" class="editorial-link"
+              >Test every paid-for feature before signing the delivery record</a
+            >, not only visible condition.
+          </li>
+          <li>
+            <a href="/guides#document-records" class="editorial-link"
+              >Follow every material conversation with a dated email</a
+            > the same day, even when a phone call feels easier.
+          </li>
+        </ol>
+        <p class="mt-8">
+          Those steps, and how to <a href="/guides#escalate-complaint" class="editorial-link"
+            >escalate if a dealership doesn't respond</a
+          >, are collected in the <a href="/guides" class="editorial-link"
             >practical Australian car-buying guide</a
-          >, with direct answers on deposits, contracts, delivery and complaints.
+          >.
         </p>
       </section>
     </article>

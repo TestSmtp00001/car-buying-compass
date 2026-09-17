@@ -70,7 +70,7 @@ const faqs = [
   description="Answer-first guidance on deposits, contracts, delivery checks, consumer rights, complaints and record-keeping when buying a car in Australia."
 >
   <main id="main-content">
-    <article class="mx-auto max-w-reading px-4 pb-8 pt-16 sm:px-6 sm:pt-24">
+    <article class="mx-auto max-w-6xl px-4 pb-8 pt-16 sm:px-6 sm:pt-24">
       <header>
         <p class="eyebrow">Australian car buying guide</p>
         <h1 class="mt-4 text-4xl font-bold leading-tight text-foreground sm:text-5xl">
@@ -85,11 +85,7 @@ const faqs = [
       <div class="mt-16 grid gap-6">
         {
           faqs.map((faq, index) => (
-            <section
-              id={faq.id}
-              aria-labelledby={`${faq.id}-heading`}
-              class="editorial-card scroll-mt-8"
-            >
+            <section id={faq.id} aria-labelledby={`${faq.id}-heading`} class="editorial-card">
               <p class="section-marker">Check {String(index + 1).padStart(2, "0")}</p>
               <h2 id={`${faq.id}-heading`} class="text-2xl font-bold leading-snug text-foreground">
                 {faq.question}
@@ -99,7 +95,7 @@ const faqs = [
                 <summary>More detail</summary>
                 <p>{faq.detail}</p>
               </details>
-              <p class="mt-5 border-l-2 border-primary pl-4 text-sm leading-6 text-muted-foreground">
+              <p class="mt-5 text-sm leading-6 text-muted-foreground">
                 Why this matters —{" "}
                 <a href={`/#${faq.storyId}`} class="editorial-link">
                   {faq.note}

@@ -5,10 +5,26 @@ interface Props {
   title: string;
   description: string;
   ogType?: "website" | "article";
+  image?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
-const { title, description, ogType = "website" } = Astro.props;
+const SITE_NAME = "A Buyer's Account";
+const TWITTER_HANDLE = "@buyersaccount";
+
+const {
+  title,
+  description,
+  ogType = "website",
+  // Placeholder social-card image — swap for a real 1200×630 image at
+  // public/og-image.jpg (or pass a page-specific `image` prop) before launch.
+  image = "/og-image.jpg",
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 
 const navigation = [
   { href: "/", label: "Story" },
@@ -27,12 +43,26 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="the author" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {ogType === "article" && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {ogType === "article" && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="twitter:site" content={TWITTER_HANDLE} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
   </head>
   <body>
     <a
@@ -41,7 +71,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     >
       Skip to content
     </a>
-    <header class="border-b border-border bg-background">
+    <header class="sticky top-0 z-40 bg-background">
       <div
         class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6"
       >
@@ -75,7 +105,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       </div>
     </header>
     <slot />
-    <footer class="mt-24 border-t border-border bg-secondary">
+    <footer class="border-t border-border bg-secondary">
       <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 sm:px-6">
         <div>
           <p class="text-sm font-semibold text-foreground">Contact</p>
