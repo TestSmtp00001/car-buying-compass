@@ -1,0 +1,29 @@
+---
+// A general-purpose card for use inside a <CardGrid> in blog content, e.g.
+// comparing variants or listing pros/cons. Pass `label` + `value` for a
+// short stat callout (a price, a rating), or just `title` for a text card.
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  label?: string;
+  value?: string;
+}
+
+const { eyebrow, title, label, value } = Astro.props;
+---
+
+<div class="editorial-card">
+  {eyebrow && <p class="section-marker">{eyebrow}</p>}
+  {title && <h3 class="text-lg font-bold text-foreground">{title}</h3>}
+  {
+    label && value && (
+      <>
+        <p class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{label}</p>
+        <p class="mt-1 text-2xl font-bold text-foreground">{value}</p>
+      </>
+    )
+  }
+  <div class="mt-3 text-muted-foreground [&>p+p]:mt-3">
+    <slot />
+  </div>
+</div>

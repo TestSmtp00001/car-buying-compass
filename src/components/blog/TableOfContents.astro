@@ -1,0 +1,44 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  variant: "mobile" | "desktop";
+}
+
+const { headings, variant } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  items.length > 0 && variant === "mobile" && (
+    // Collapsed by default on small screens so the page doesn't open on a wall of links.
+    <details class="editorial-details lg:hidden">
+      <summary>On this page</summary>
+      <nav aria-label="Table of contents" class="toc-nav mt-4">
+        {items.map((item) => (
+          <a href={`#${item.slug}`} class:list={[item.depth === 3 && "toc-sub"]}>
+            {item.text}
+          </a>
+        ))}
+      </nav>
+    </details>
+  )
+}
+
+{
+  items.length > 0 && variant === "desktop" && (
+    <nav aria-label="Table of contents" class="toc-nav sticky top-24 hidden lg:grid">
+      <p class="text-xs font-bold uppercase tracking-wide text-muted-foreground">On this page</p>
+      {items.map((item) => (
+        <a href={`#${item.slug}`} class:list={[item.depth === 3 && "toc-sub"]}>
+          {item.text}
+        </a>
+      ))}
+    </nav>
+  )
+}

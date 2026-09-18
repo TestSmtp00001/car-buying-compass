@@ -30,6 +30,7 @@ const navigation = [
   { href: "/", label: "Story" },
   { href: "/reviews", label: "Reviews" },
   { href: "/guides", label: "Buying guide" },
+  { href: "/blog", label: "Jolion review" },
 ] as const;
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -82,7 +83,9 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           <ul class="flex items-center gap-1">
             {
               navigation.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(`${item.href}/`));
                 return (
                   <li>
                     <a

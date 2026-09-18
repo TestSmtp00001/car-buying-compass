@@ -276,6 +276,69 @@
   text-align: center;
 }
 
+@utility blog-prose {
+  & h2 {
+    color: var(--color-foreground);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 3.25rem;
+  }
+  & h3 {
+    color: var(--color-foreground);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-top: 2.5rem;
+  }
+  & > :first-child { margin-top: 0; }
+  & p { margin-top: 1.5rem; }
+  & ul, & ol { margin-top: 1.5rem; padding-left: 1.5rem; }
+  & ul { list-style: disc; }
+  & ol { list-style: decimal; }
+  & li + li { margin-top: 0.5rem; }
+  & li::marker { color: var(--color-primary); }
+  & a { color: var(--color-primary); font-weight: 650; text-decoration-line: none; }
+  & a:hover { text-decoration-line: underline; }
+  & strong { font-weight: 700; }
+  & blockquote {
+    border-left: 3px solid var(--color-primary);
+    color: var(--color-muted-foreground);
+    font-style: italic;
+    margin-top: 2rem;
+    padding-left: 1.25rem;
+  }
+  & hr { border-color: var(--color-border); margin: 3rem 0; }
+  & img {
+    border: 1px solid var(--color-border);
+    height: auto;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  & figure { margin-top: 2rem; }
+  & figure img { margin-top: 0; }
+  & figcaption { color: var(--color-muted-foreground); font-size: 0.875rem; margin-top: 0.5rem; }
+  & table { border-collapse: collapse; display: block; font-size: 0.95rem; margin-top: 2rem; overflow-x: auto; width: 100%; }
+  & th, & td { border: 1px solid var(--color-border); padding: 0.65rem 0.9rem; text-align: left; vertical-align: top; }
+  & th { background: var(--color-secondary); color: var(--color-foreground); font-weight: 650; }
+  & code { background: var(--color-secondary); font-size: 0.9em; padding: 0.15em 0.4em; }
+}
+
+@utility toc-nav {
+  border-left: 2px solid var(--color-border);
+  display: grid;
+  gap: 0.65rem;
+  padding-left: 1.25rem;
+  & a {
+    color: var(--color-muted-foreground);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-decoration-line: none;
+  }
+  & a:hover { color: var(--color-primary); }
+  & .toc-sub { margin-left: 1rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }

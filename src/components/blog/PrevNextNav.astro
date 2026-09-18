@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  prev: CollectionEntry<"blog"> | null;
+  next: CollectionEntry<"blog"> | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav aria-label="More Haval Jolion topics" class="stop-nav mt-16 grid gap-6 sm:grid-cols-2">
+      <div>
+        {prev && (
+          <a href={`/blog/${prev.id}`} class="stop-link block">
+            <span class="block text-xs font-bold uppercase tracking-wide text-muted-foreground">
+              ← Previous
+            </span>
+            <span class="mt-1 block text-lg">{prev.data.title}</span>
+          </a>
+        )}
+      </div>
+      <div class="sm:text-right">
+        {next && (
+          <a href={`/blog/${next.id}`} class="stop-link block">
+            <span class="block text-xs font-bold uppercase tracking-wide text-muted-foreground">
+              Next →
+            </span>
+            <span class="mt-1 block text-lg">{next.data.title}</span>
+          </a>
+        )}
+      </div>
+    </nav>
+  )
+}
